@@ -28,13 +28,32 @@ for (let index = 0; index < productList.length; index++){
       const cartList = document.getElementById('cart-price');
       cartList.innerText = totalPrice.toFixed(2);
 
-      // const cartPriceElement = document.getElementById('cart-price');
-      // cartPriceElement.innerText = totalPrice.toFixed(2) + ' Tk';
-
-
+      const totalPayingAmount = document.getElementById('total-paid');
+      totalPayingAmount.innerText = totalPrice.toFixed(2);
       
-
     })
 }
+
+const discountCode  = 'Protap1000';
+
+function couponCode(){
+  const inputCoupon = document.getElementById('coupon-value').value;
+  const cartPrice = document.getElementById('cart-price').innerText = parseFloat(totalPrice.toFixed(2)); 
+  if(cartPrice >= 1000){
+      console.log('discount added');
+      if(inputCoupon === discountCode){
+          const totalDiscount = (cartPrice * 30 ) / 100 ;
+          const discount = document.getElementById('discount').innerText = `${parseFloat(totalDiscount)} ${'Tk'}`;
+          document.getElementById('total-paid').innerText = `${parseFloat(cartPrice - parseFloat(discount))} ${'Tk'}`;
+          document.getElementById('coupon-value').value = "";
+      }else{
+        alert('Invalid Coupon Code');
+        document.getElementById('coupon-value').value = "";
+      }
+  }else{
+       alert(`Please Buy More Than 1000 Taka'product to to get discount`);
+  }
+}
+
 
 
